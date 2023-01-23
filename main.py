@@ -1,7 +1,5 @@
-import pandas as pd
-
-poke = pd.read_excel('TimeStamps.csv')
-
-print(poke.head(5))
-
-# this here is messed up!
+import csv
+with open("timeStamps.csv", 'r') as file:
+  csvreader = csv.reader(file)
+  for row in csvreader:
+    print(row[0])
