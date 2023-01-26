@@ -24,15 +24,15 @@ with open("timeStamps.csv", 'r') as file:
     timeInSec = hour + minute + second
     timeList.append(timeInSec)
     nameList.append(row[1])
-def CutVideo(initialTime, finalTime, fileName):
-   clip = VideoFileClip("full.mp4")
-   clip = clip.subclip(initialTime, finalTime)
-   clip.write_videofile(str(fileName) + ".mp4")
-
 
 link = input("Enter the YouTube video URL: ")
 Download(link)
 
-for i in range(0,len(timeList)-1):
-    CutVideo(timeList[i],timeList[i+1],nameList[i])
+def CutVideo(initialTime, finalTime, fileName):
+   clip = VideoFileClip("full.mp4")
+   clip = clip.subclip(initialTime, finalTime)
+   timeList.append(clip.duration)
+   clip.write_videofile(str(fileName) + ".mp4")
 
+for i in range(0,len(timeList)):
+    CutVideo(timeList[i],timeList[i+1],nameList[i])
