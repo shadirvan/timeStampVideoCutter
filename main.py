@@ -3,15 +3,15 @@ from moviepy.editor import *
 import csv
 
 
-# def Download(link):
-#     youtubeObject = YouTube(link)
-#     print("Please wait while the file is downloaded....")
-#     youtubeObject = youtubeObject.streams.get_highest_resolution()
-#     try:
-#         youtubeObject.download(filename="full.mp4")
-#     except:
-#         print("Download Failed !")
-#     print("Download completed successfully")
+def Download(link):
+    youtubeObject = YouTube(link)
+    print("Please wait while the file is downloaded....")
+    youtubeObject = youtubeObject.streams.get_highest_resolution()
+    try:
+        youtubeObject.download(filename="full.mp4")
+    except:
+        print("Download Failed !")
+    print("Download completed successfully")
 
 with open("timeStamps.csv", 'r') as file:
   csvreader = csv.reader(file)
@@ -26,7 +26,7 @@ with open("timeStamps.csv", 'r') as file:
     nameList.append(row[1])
 
 link = input("Enter the YouTube video URL: ")
-# Download(link)
+Download(link)
 
 def CutVideo(initialTime, finalTime, fileName):
    clip = VideoFileClip("full.mp4")
@@ -40,5 +40,5 @@ timeList.append(clip.duration)
 for i in range(0,len(timeList)-1):
     CutVideo(timeList[i],timeList[i+1],nameList[i])
 
-    
+
 print("Video Cutting Succesfull")
